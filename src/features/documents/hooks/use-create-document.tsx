@@ -14,8 +14,8 @@ export const useCreateDocument = () => {
     mutationFn: (input: CreateDocumentInput) => {
       return createDocument({
         ...input,
-        issueDate: formatDateToNoon(input.issueDate),
-        dueDate: formatDateToNoon(input.dueDate),
+        issueDate: formatDateToNoon(input.issueDate ? input.issueDate : ''),
+        dueDate: formatDateToNoon(input.dueDate ? input.dueDate : ''),
       });
     },
     onSuccess: (_, variables) => {
