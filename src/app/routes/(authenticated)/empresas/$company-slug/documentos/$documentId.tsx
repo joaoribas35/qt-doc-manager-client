@@ -19,6 +19,7 @@ import { EditDocumentModal } from '@/features/documents/components/modal-edit-do
 import { useGetDocumentById } from '@/features/documents/hooks/use-get-document-by-id';
 import { useUserStore } from '@/store/user.store';
 import { UserRole } from '@/types/user.types';
+import { constants } from '@/utils/constants';
 import { formatDate, formatDateWithWeekday } from '@/utils/format-date';
 import { handleToastErrorMsg } from '@/utils/handle-toast-error-msg';
 
@@ -119,10 +120,10 @@ function DocumentDetailsPage() {
             textTransform: 'capitalize',
           }}
         >
-          {document.name}
+          {document.name ? document.name : constants.fieldUndefined}
         </Typography>
         <Typography variant="body1" sx={{ color: 'text.secondary', mb: 3, textTransform: 'capitalize' }}>
-          {document.companyName}
+          {document.companyName ? document.companyName : constants.fieldUndefined}
         </Typography>
 
         {/* Document Information Card */}
@@ -156,7 +157,7 @@ function DocumentDetailsPage() {
                 Emissor
               </Typography>
               <Typography variant="body1" sx={{ fontWeight: 500 }}>
-                {document.issuer}
+                {document.issuer ? document.issuer : constants.fieldUndefined}
               </Typography>
             </Box>
           </Box>
@@ -182,7 +183,7 @@ function DocumentDetailsPage() {
                 Número do Documento
               </Typography>
               <Typography variant="body1" sx={{ fontWeight: 500 }}>
-                {document.number}
+                {document.number ? document.number : constants.fieldUndefined}
               </Typography>
             </Box>
           </Box>
@@ -208,7 +209,7 @@ function DocumentDetailsPage() {
                 Data de Emissão
               </Typography>
               <Typography variant="body1" sx={{ fontWeight: 500, textTransform: 'capitalize' }}>
-                {formatDate(document.issueDate)}
+                {document.issueDate ? formatDate(document.issueDate) : constants.fieldUndefined}
               </Typography>
             </Box>
           </Box>
@@ -234,7 +235,7 @@ function DocumentDetailsPage() {
                 Data de Vencimento
               </Typography>
               <Typography variant="body1" sx={{ fontWeight: 500, color: '#f44336', textTransform: 'capitalize' }}>
-                {formatDateWithWeekday(document.dueDate)}
+                {document.dueDate ? formatDateWithWeekday(document.dueDate) : constants.fieldUndefined}
               </Typography>
             </Box>
           </Box>
@@ -273,6 +274,7 @@ function DocumentDetailsPage() {
           type="button"
           startIcon={<DownloadIcon />}
           onClick={handleDownload}
+          disabled={!document.path}
           fullWidth
         >
           Baixar documento

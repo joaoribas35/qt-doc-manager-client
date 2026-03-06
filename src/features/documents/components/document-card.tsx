@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import { useRouter } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 
+import { constants } from '@/utils/constants';
 import { formatDate } from '@/utils/format-date';
 
 import type { Document } from '../types/document';
@@ -26,7 +27,7 @@ interface Props {
 
 export function DocumentCard({ document, companySlug }: Props) {
   const router = useRouter();
-  const backgroundColor = getDueDateBackgroundColor(document.dueDate);
+  const backgroundColor = getDueDateBackgroundColor(document.dueDate ?? '');
 
   return (
     <Box
@@ -51,7 +52,7 @@ export function DocumentCard({ document, companySlug }: Props) {
           textTransform: 'capitalize',
         }}
       >
-        {document.name}
+        {document.name ? document.name : constants.fieldUndefined}
       </Typography>
 
       {/* Document Details */}
@@ -63,7 +64,7 @@ export function DocumentCard({ document, companySlug }: Props) {
           textTransform: 'capitalize',
         }}
       >
-        {document.issuer}
+        {document.issuer ? document.issuer : constants.fieldUndefined}
       </Typography>
 
       {/* Due Date and Status */}
@@ -82,7 +83,7 @@ export function DocumentCard({ document, companySlug }: Props) {
             textTransform: 'capitalize',
           }}
         >
-          Vence em: {formatDate(document.dueDate)}
+          Vence em: {document.dueDate ? formatDate(document.dueDate) : constants.fieldUndefined}
         </Typography>
       </Box>
     </Box>
