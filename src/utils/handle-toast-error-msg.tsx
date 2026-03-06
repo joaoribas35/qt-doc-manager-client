@@ -12,6 +12,18 @@ export const handleToastErrorMsg = (error: unknown) => {
     }
   }
 
+  if (error instanceof Error) {
+    toast.error(`APP-002: ${error.message}`);
+    return;
+  }
+
+  const errorObject = JSON.stringify(error);
+
+  if (errorObject) {
+    toast.error(`APP-003: ${errorObject}`);
+    return;
+  }
+
   toast.error('APP-001: Ocorreu um erro inesperado');
   return;
 };
