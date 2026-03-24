@@ -265,7 +265,7 @@ export function EditCompanyModal({ open, setOpen, company }: Props) {
               type="submit"
               disabled={updateMutation.isPending || isLoadingCompany}
             >
-              Editar
+              Salvar
             </Button>
           </Stack>
         </DialogActions>
