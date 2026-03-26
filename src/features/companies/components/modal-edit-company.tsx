@@ -248,22 +248,64 @@ export function EditCompanyModal({ open, setOpen, company }: Props) {
             )}
           </Stack>
         </DialogContent>
-        <DialogActions sx={{ justifyContent: 'space-between', px: 3, pb: 2 }}>
-          <Stack direction="row" spacing={2}>
-            <Button onClick={handleDeleteClick} color="error" variant="outlined">
-              Excluir
+        <DialogActions
+          sx={{
+            px: 3,
+            pb: 2,
+            flexDirection: { xs: 'column', sm: 'row' },
+            alignItems: { xs: 'stretch', sm: 'center' },
+            justifyContent: { xs: 'flex-start', sm: 'space-between' },
+            gap: 2,
+            '& > :not(style) ~ :not(style)': {
+              ml: { xs: 0, sm: 1 },
+            },
+          }}
+        >
+          <Stack
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={2}
+            sx={{
+              width: { xs: '100%', sm: 'auto' },
+              alignItems: { xs: 'stretch', sm: 'center' },
+            }}
+          >
+            <Button
+              onClick={handleDeleteClick}
+              color="error"
+              variant="outlined"
+              sx={{ width: { xs: '100%', sm: 'auto' } }}
+            >
+              Excluir empresa
             </Button>
-            <IconButton onClick={() => setOpenAddUser(true)}>
+            <Button
+              onClick={() => setOpenAddUser(true)}
+              variant="outlined"
+              sx={{ display: { xs: 'flex', sm: 'none' }, width: '100%' }}
+              startIcon={<PersonAddIcon />}
+            >
+              Adicionar usuário
+            </Button>
+            <IconButton onClick={() => setOpenAddUser(true)} sx={{ display: { xs: 'none', sm: 'inline-flex' } }}>
               <PersonAddIcon sx={{ color: 'primary.main' }} />
             </IconButton>
           </Stack>
-          <Stack direction="row" spacing={1}>
-            <Button onClick={handleClose}>Cancelar</Button>
+          <Stack
+            direction={{ xs: 'column-reverse', sm: 'row' }}
+            spacing={1}
+            sx={{
+              width: { xs: '100%', sm: 'auto' },
+              alignItems: { xs: 'stretch', sm: 'center' },
+            }}
+          >
+            <Button onClick={handleClose} variant="outlined" sx={{ width: { xs: '100%', sm: 'auto' } }}>
+              Cancelar
+            </Button>
             <Button
               onClick={handleSubmit(onSubmit)}
               variant="contained"
               type="submit"
               disabled={updateMutation.isPending || isLoadingCompany}
+              sx={{ width: { xs: '100%', sm: 'auto' } }}
             >
               Salvar
             </Button>

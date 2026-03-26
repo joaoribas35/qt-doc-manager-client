@@ -333,7 +333,9 @@ export function DocumentFormModal({ open, setOpen, companySlug, document }: Prop
             <div />
           )}
           <Stack direction="row" spacing={1}>
-            <Button onClick={handleClose}>Cancelar</Button>
+            <Button onClick={handleClose} variant="outlined">
+              Cancelar
+            </Button>
             <Button onClick={handleSubmit(onSubmit)} variant="contained" type="submit" disabled={isPending}>
               {isEdit ? 'Salvar' : 'Adicionar'}
             </Button>

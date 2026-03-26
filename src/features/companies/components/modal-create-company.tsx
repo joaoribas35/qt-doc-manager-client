@@ -153,7 +153,9 @@ export function CreateCompanyModal({ open, setOpen }: Props) {
           </IconButton>
 
           <Stack direction="row" spacing={1}>
-            <Button onClick={handleClose}>Cancelar</Button>
+            <Button onClick={handleClose} variant="outlined">
+              Cancelar
+            </Button>
             <Button onClick={handleSubmit(onSubmit)} variant="contained" type="submit" disabled={mutation.isPending}>
               Adicionar
             </Button>
